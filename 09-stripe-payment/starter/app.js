@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('express-async-errors');
+const stripeController = require("./controllers/stripeController");
 
 const express = require('express');
 const app = express();
@@ -12,6 +13,8 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
 app.use(express.static('./public'));
+
+app.post("/stripe", stripeController);
 
 // stripe
 app.use(notFoundMiddleware);
